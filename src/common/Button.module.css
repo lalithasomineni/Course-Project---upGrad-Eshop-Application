@@ -1,0 +1,14 @@
+.button {
+    border: none;
+    box-shadow: none;
+    color: white;
+    }
+    
+    .button:hover,
+    .button:active {
+      background: #1448d7;
+    }
+    
+    .button:focus {
+      outline: none;
+    }
