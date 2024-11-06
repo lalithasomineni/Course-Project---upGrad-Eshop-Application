@@ -8,7 +8,7 @@ import Navbar from '../../common/Navbar';
 import Buttonui from '../../common/Buttonui';
 import { useLocation } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
-
+import Logout from '../Login/Logout';
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -21,6 +21,7 @@ const Home = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const admin = location.state?.admin;
+    const isAdmin = sessionStorage.setItem("isAdmin",admin);
     const token = sessionStorage.getItem("access-token");
 
     useEffect(() => {
@@ -160,13 +161,12 @@ const Home = () => {
                     }}
                 />
 
-                <Buttonui type="button" onClick={() => navigate("/")}>Home</Buttonui>
-
+                 <Buttonui type="button" onClick={(e) => e.preventDefault()}>Home</Buttonui>
                 {admin && (
                     <Buttonui type="button" onClick={() => navigate("/addproducts")}>Add Products</Buttonui>
                 )}
 
-                <Buttonui logout="true" type="button" onClick={() => navigate("/signin")}>LogOut</Buttonui>
+                <Buttonui logout="true" type="button" onClick={() => navigate("/logout")}>LogOut</Buttonui>
             </Navbar>
 
             <div style={{ padding: '20px' }}>
@@ -230,7 +230,7 @@ const Home = () => {
                                         {truncateDescription(product.description, 100)}  {/* Truncate description */}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
-                                        Price: ${product.price}
+                                        Price: {product.price}
                                     </Typography>
                                 </CardContent>
 

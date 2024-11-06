@@ -130,7 +130,7 @@ const Signup = () => {
             className="w-full"
             value={firstName}
             onChange={handleFirstNameChange}
-          />
+          /><br/><br/>
           <TextField
             required
             id="lastName"
@@ -139,7 +139,7 @@ const Signup = () => {
             className="w-full"
             value={lastName}
             onChange={handleLastNameChange}
-          />
+          /><br/><br/>
           <TextField
             required
             id="email"
@@ -150,7 +150,7 @@ const Signup = () => {
             value={email}
             onChange={handleEmailChange}
             helperText={!validEmail ? "Invalid email address" : ""}
-          />
+          /><br/><br/>
           <TextField
             required
             id="password"
@@ -160,7 +160,7 @@ const Signup = () => {
             value={password}
             placeholder="Password"
             onChange={handlePasswordChange}
-          />
+          /><br/><br/>
           <TextField
             required
             id="confirmPassword"
@@ -170,7 +170,7 @@ const Signup = () => {
             className="w-full"
             value={confirmpassword}
             onChange={handleConfirmPasswordChange}
-          />
+          /><br/><br/>
           <TextField
             required
             id="contact"
@@ -181,12 +181,12 @@ const Signup = () => {
             value={contactNumber}
             onChange={handleContactChange}
             helperText={!validContact ? "Invalid contact number" : ""}
-          />
+          /><br/><br/>
 
           <label>Admin</label>
           <Checkbox id="role" onChange={handleRoleChange} checked={isAdmin}>
             Admin
-          </Checkbox>
+          </Checkbox><br/><br/>
 
           <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
             <Button
@@ -195,7 +195,7 @@ const Signup = () => {
               disabled={!firstName || !lastName || !email || !password || !confirmpassword || contactNumber.length < 10}
             >
               SIGN UP
-            </Button>
+            </Button><br/><br/>
           </div>
         </form>
 

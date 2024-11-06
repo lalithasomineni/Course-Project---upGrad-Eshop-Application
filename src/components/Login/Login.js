@@ -7,20 +7,23 @@ import * as React from "react";
 import { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import ButtonUI from "../../common/Buttonui";
 import NavBar from "../../common/Navbar";
 import EmailValidator from "../../utils/emailValidator";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signin = () => {
   const [password, setPassword] = useState("");
   const [username, setusername] = useState("");
-  const[validuser,setvalidUser]=useState(true);
- // const[validpassword,setvalidP]=useState(true);
+  const [validuser, setvalidUser] = useState(true);
+
   let navigate = useNavigate();
+
   const userNameHandler = (event) => {
     setusername(event.target.value);
   };
+
   const passwordHandler = (event) => {
     setPassword(event.target.value);
   };
@@ -54,6 +57,7 @@ const Signin = () => {
       alert(`Error: ${e.message}`);
     }
   };
+
   const getdateofUsers = async (token) => {
     try {
       const rawResponse = await fetch("http://localhost:8080/api/users", {
@@ -76,10 +80,8 @@ const Signin = () => {
 
         const userRole = loggedinUser.map((rolename) => rolename.roles[0].name);
         if (userRole[0] === "ADMIN") {
-          toast.success("Login Success !!")
+          toast.success("Login Success !!"); // This will trigger the toast
           navigate("/home", { state: { admin: true } });
-
-          
         } else {
           navigate("/home");
         }
@@ -96,9 +98,9 @@ const Signin = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    if(!EmailValidator(username)){
-        setvalidUser(false);
-        return;
+    if (!EmailValidator(username)) {
+      setvalidUser(false);
+      return;
     }
     submitrequest();
   };
@@ -147,10 +149,12 @@ const Signin = () => {
             id="userName"
             label="userName"
             placeholder="userName"
-            error={!validuser? true:false}
+            error={!validuser ? true : false}
             className="w-full"
             onChange={userNameHandler}
           />
+          <br />
+          <br />
           <TextField
             required
             id="Password"
@@ -160,6 +164,8 @@ const Signin = () => {
             placeholder="Password"
             onChange={passwordHandler}
           />
+          <br />
+          <br />
           <div
             style={{
               display: "flex",
@@ -178,7 +184,7 @@ const Signin = () => {
             </Button>
           </div>
         </form>
-        <br></br>
+        <br />
         <Row>
           <Col>
             Do not have an account?
@@ -192,6 +198,9 @@ const Signin = () => {
           </Col>
         </Row>
       </div>
+
+      {/* Add ToastContainer here */}
+      <ToastContainer /> {/* This will allow toasts to appear */}
     </>
   );
 };

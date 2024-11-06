@@ -6,10 +6,12 @@ import Home from './components/Home/Home';
 //import SignUp from './components/Signup/Signup';
 import Signup from './components/Signup/Signup';
 import Product from './components/Product/Product'; // Assuming you have a Product component
-import Address from './components/Address/Address';
+
 import NotFound from './components/NotFound/NotFound'; // Optionally, you could create a NotFound component
 import Editproduct from './components/Home/Editproduct';
 import AddProduct from './components/Home/addProduct';
+import PlaceOrder from './components/Placeorder/Placeorder';
+import Logout from './components/Login/Logout';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -43,9 +45,10 @@ function App() {
                     <Route path='/home' element={<Home searchTerm={searchTerm} />} />
                     <Route path='/signup' element={<Signup/>} />
                     <Route path='/products/:id' element={<Product />} /> {/* Fixed the missing '>' */}
-                    <Route path='/address' element={<Address />} /> {/* Fixed the path to lowercase 'address' */}
-                    <Route path="*" element={<NotFound />} />
+                    <Route path = '/placeorder' element = {<PlaceOrder/>}/>
+                    <Route path="/" element={<NotFound />} />
                     <Route path = '/editProduct/:id' element = {<Editproduct/>}/> 
+                    <Route path = '/logout' element = {<Logout/>}/> 
                     <Route path = '/addproducts' element = {<AddProduct/>}></Route>{/* Optional: Fallback route for undefined paths */}
                 </Routes>
             </Router>
